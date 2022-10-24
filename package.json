@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "esbuild src/index.jsx --servedir=. --bundle --outdir=build --public-path=./build/ --jsx=automatic",
-    "build": "esbuild src/index.jsx --bundle --outdir=build --public-path=./build/ --jsx=automatic",
+    "start": "esbuild index.jsx --servedir=. --bundle --outdir=build --public-path=./build/ --jsx=automatic",
+    "build": "esbuild index.jsx --bundle --outdir=build --public-path=./build/ --jsx=automatic",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
