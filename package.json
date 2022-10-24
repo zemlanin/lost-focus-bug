@@ -1,0 +1,23 @@
+{
+  "name": "lost-focus-bug",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "esbuild src/index.jsx --servedir=. --bundle --outdir=build --public-path=./build/ --jsx=automatic",
+    "build": "esbuild src/index.jsx --bundle --outdir=build --public-path=./build/ --jsx=automatic",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@noriginmedia/norigin-spatial-navigation": "^1.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.12"
+  }
+}
