@@ -11,6 +11,16 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script>
+      window.require = (name) => {
+        if (name === 'react') {
+          return window.React
+        }
+
+        throw new Error(`require(${name})`)
+      }
+    </script>
     <script src="build/index.js"></script>
   </body>
 </html>
