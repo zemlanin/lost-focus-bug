@@ -93,7 +93,6 @@ function AutoBackView({ timeout }) {
 
 function View({ children }) {
   const { ref, focusKey, focusSelf } = useFocusable({
-    focusKey: "view",
   });
 
   const location = useLocation();
