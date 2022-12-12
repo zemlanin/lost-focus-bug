@@ -30,6 +30,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<RootView />} />
+      <Route path="/similar" element={<RootView />} />
       <Route path="/back" element={<BackView />} />
       <Route
         path="/auto-back-immediate"
@@ -51,6 +52,9 @@ function RootView() {
     <View>
       <Button onClick={() => navigate("/back")} focusKey={"root-back"}>
         /back
+      </Button>
+      <Button onClick={() => navigate("/similar")} focusKey={"root-similar"}>
+        /similar
       </Button>
       <Button
         onClick={() => navigate("/auto-back-immediate")}
@@ -87,7 +91,7 @@ function BackView() {
 
   return (
     <View>
-      <Button onClick={() => navigate(-1)} focusKey={"back-back"}>
+      <Button onClick={() => navigate("/")} focusKey={"back-back"}>
         /
       </Button>
     </View>
@@ -109,18 +113,23 @@ function AutoBackView({ timeout }) {
 }
 
 function View({ children }) {
-  const { ref, focusKey, focusSelf } = useFocusable({
-  });
-
   const location = useLocation();
+
+  const { ref, focusKey, focusSelf } = useFocusable({
+    focusKey: 'view-' + location.pathname,
+  });
 
   useEffect(() => {
     focusSelf();
-  }, [location.pathname]);
+  }, [focusSelf, location.pathname]);
 
   return (
     <FocusContext.Provider value={focusKey}>
-      <div ref={ref}>{children}</div>
+      <div ref={ref}>
+        {location.pathname}
+        <br/>
+        {children}
+      </div>
     </FocusContext.Provider>
   );
 }
