@@ -11,7 +11,7 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState, StrictMode } from "react";
 
 initSpatialNavigation({
   debug: true,
@@ -19,9 +19,11 @@ initSpatialNavigation({
 });
 
 createRoot(document.getElementById("root")).render(
+  // <StrictMode>
   <HashRouter>
     <App />
   </HashRouter>
+  // </StrictMode>
 );
 
 function App() {
@@ -43,6 +45,7 @@ function App() {
 
 function RootView() {
   const navigate = useNavigate();
+  const [addedButton, setAddedButton] = useState(false);
 
   return (
     <View>
@@ -61,6 +64,20 @@ function RootView() {
       >
         /auto-back-timeout
       </Button>
+      <div style={{ width: 40 }} />
+      <Button onClick={() => setAddedButton(true)} focusKey={"root-add-button"}>
+        add nested button
+      </Button>
+      {addedButton ? (
+        <Nested>
+          <Button
+            onClick={() => setAddedButton(false)}
+            focusKey={"root-remove-button"}
+          >
+            remove button
+          </Button>
+        </Nested>
+      ) : null}
     </View>
   );
 }
@@ -127,5 +144,17 @@ function Button({ children, onClick, focusKey }) {
     >
       {children}
     </button>
+  );
+}
+
+function Nested({ children }) {
+  const { ref, focused, focusKey } = useFocusable();
+
+  return (
+    <FocusContext.Provider value={focusKey}>
+      <div ref={ref} style={{ marginTop: 30 }}>
+        {children}
+      </div>
+    </FocusContext.Provider>
   );
 }
