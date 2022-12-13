@@ -29,8 +29,8 @@ createRoot(document.getElementById("root")).render(
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<RootView />} />
-      <Route path="/similar" element={<RootView />} />
+      <Route path="/" element={<RootView key="root" />} />
+      <Route path="/similar" element={<RootView key="similar" />} />
       <Route path="/back" element={<BackView />} />
       <Route
         path="/auto-back-immediate"
